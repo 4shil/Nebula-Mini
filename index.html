@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V O Y A G E | Interactive Cosmic Journey</title>
+    <meta name="description" content="An immersive 14-scene cosmic journey through space with interactive 3D experiences">
+    
+    <!-- High-End Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loader" class="loader">
+        <span>INITIALIZING SIMULATION</span>
+    </div>
+
+    <nav>
+        <div class="logo">VOYAGE</div>
+        <div class="menu">System</div>
+    </nav>
+
+    <div class="hint">Move mouse to interact with particles</div>
+
+    <canvas id="webgl"></canvas>
+
+    <main id="app"></main>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

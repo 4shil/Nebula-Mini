@@ -1,0 +1,93 @@
+/* ===== HINT ===== */
+.hint {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 0.7rem;
+    opacity: 0.4;
+    z-index: 10;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: opacity 0.5s ease;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--nebula), var(--crystal), var(--aurora));
+    z-index: 100;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+/* ===== SCROLL CUE ===== */
+.scroll-cue {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.5;
+    animation: bounce 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.scroll-cue span {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.scroll-cue::after {
+    content: '';
+    width: 1px;
+    height: 30px;
+    background: linear-gradient(to bottom, #fff, transparent);
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(8px);
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    nav {
+        padding: 1.5rem 2rem;
+    }
+
+    section {
+        padding: 0 5%;
+    }
+
+    .content {
+        max-width: 100%;
+    }
+
+    .layout-right .content {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .scene-indicator {
+        right: 1rem;
+    }
+
+    .hint {
+        display: none;
+    }
+}

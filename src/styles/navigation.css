@@ -1,0 +1,27 @@
+/* ===== NAVIGATION ===== */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    mix-blend-mode: difference;
+    pointer-events: none;
+}
+
+.logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    font-size: 1.2rem;
+}
+
+.menu {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+}

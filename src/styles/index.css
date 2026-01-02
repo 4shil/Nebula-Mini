@@ -1,0 +1,57 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+    --bg: #050505;
+    --text: #e0e0e0;
+    --font-head: 'Cinzel', serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    
+    /* Scene Colors */
+    --nebula: #00ffff;
+    --crystal: #ff00aa;
+    --grid: #00ff00;
+    --void: #ffffff;
+    --aurora: #7b2ff7;
+    --solar: #ff6b00;
+    --quantum: #00ffd5;
+    --fractal: #ff1493;
+    --pulse: #39ff14;
+    --mirror: #c0c0c0;
+    --storm: #4169e1;
+    --spiral: #ffd700;
+    --warp: #ff4500;
+    --genesis: #9400d3;
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* ===== CANVAS ===== */
+#webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    outline: none;
+}
