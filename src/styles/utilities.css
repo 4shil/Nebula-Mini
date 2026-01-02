@@ -1,93 +1,121 @@
-/* ===== HINT ===== */
-.hint {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    font-size: 0.7rem;
-    opacity: 0.4;
-    z-index: 10;
-    pointer-events: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    transition: opacity 0.5s ease;
-}
+/* BRUTALIST UTILITIES */
 
-/* ===== PROGRESS BAR ===== */
+/* Progress Bar - Top of screen */
 .progress-bar {
     position: fixed;
     top: 0;
     left: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--nebula), var(--crystal), var(--aurora));
-    z-index: 100;
+    height: 4px;
+    background: var(--brutal-accent);
     transform-origin: left;
     transform: scaleX(0);
+    z-index: 1001;
+    width: 100%;
 }
 
-/* ===== SCROLL CUE ===== */
+/* Scroll Cue */
 .scroll-cue {
     position: fixed;
-    bottom: 3rem;
+    bottom: var(--space-lg);
     left: 50%;
     transform: translateX(-50%);
+    z-index: 100;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    opacity: 0.5;
-    animation: bounce 2s ease-in-out infinite;
+    gap: var(--space-sm);
     pointer-events: none;
 }
 
 .scroll-cue span {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
     text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--brutal-white);
+    opacity: 0.5;
 }
 
 .scroll-cue::after {
-    content: '';
-    width: 1px;
-    height: 30px;
-    background: linear-gradient(to bottom, #fff, transparent);
+    content: '↓';
+    font-size: 1.5rem;
+    color: var(--brutal-accent);
+    animation: bounce 1s ease infinite;
 }
 
 @keyframes bounce {
 
     0%,
     100% {
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
     }
 
     50% {
-        transform: translateX(-50%) translateY(8px);
+        transform: translateY(8px);
     }
 }
 
-/* ===== RESPONSIVE ===== */
+/* Interactive hint */
+.hint {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    z-index: 100;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(245, 245, 245, 0.3);
+    pointer-events: none;
+}
+
+.hint::before {
+    content: '// ';
+    color: var(--brutal-accent);
+}
+
+/* Coordinates display */
+.coordinates {
+    position: fixed;
+    bottom: var(--space-lg);
+    left: var(--space-lg);
+    z-index: 100;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: rgba(245, 245, 245, 0.3);
+    letter-spacing: 0.1em;
+}
+
+/* Grid overlay - optional debug */
+.grid-overlay {
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 60, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 60, 0, 0.03) 1px, transparent 1px);
+    background-size: var(--space-lg) var(--space-lg);
+    pointer-events: none;
+    z-index: 9998;
+    display: none;
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-    nav {
-        padding: 1.5rem 2rem;
+    .scroll-cue {
+        bottom: var(--space-md);
     }
 
-    section {
-        padding: 0 5%;
-    }
-
-    .content {
-        max-width: 100%;
-    }
-
-    .layout-right .content {
-        margin-left: 0;
-        text-align: left;
-    }
-
-    .scene-indicator {
-        right: 1rem;
-    }
-
-    .hint {
+    .hint,
+    .coordinates {
         display: none;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .scroll-cue::after,
+    .loader-bar::after {
+        animation: none;
     }
 }

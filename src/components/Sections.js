@@ -1,109 +1,110 @@
-// Scene definitions for 14 unique cosmic scenes
+// Scene definitions for 14 unique cosmic scenes - BRUTALIST EDITION
 export const SCENES = [
     {
         id: 'nebula',
-        title: 'Nebula<br>Genesis',
-        description: 'The beginning of the journey. We are surrounded by a field of reactive stardust. Move your cursor to disturb the field.',
-        button: 'Enter System',
+        title: 'NEBULA<br>GENESIS',
+        description: 'ORIGIN POINT. REACTIVE STARDUST FIELD. CURSOR INTERACTION ENABLED.',
+        button: 'ENTER_SYSTEM',
         layout: 'left'
     },
     {
         id: 'crystal',
-        title: 'Crystal<br>Artifact',
-        description: 'A massive geometric structure suspended in the void. It pulses with energy, observing your passage through space.',
-        button: 'Scan Object',
+        title: 'CRYSTAL<br>ARTIFACT',
+        description: 'GEOMETRIC STRUCTURE DETECTED. ENERGY SIGNATURE: UNKNOWN. SCANNING.',
+        button: 'SCAN_OBJECT',
         layout: 'right'
     },
     {
         id: 'grid',
-        title: 'Digital<br>Terrain',
-        description: 'The endless horizon of a synthetic world. The ground beneath us is alive, shifting in a rhythmic pattern.',
-        button: 'Analyze Terrain',
-        layout: 'center'
-    },
-    {
-        id: 'void',
-        title: 'Event<br>Horizon',
-        description: 'We have reached the edge of the simulation. Nothing exists here but silence and the echo of creation.',
-        button: 'Continue',
+        title: 'DIGITAL<br>TERRAIN',
+        description: 'SYNTHETIC LANDSCAPE. GROUND MATRIX UNSTABLE. PROCEED WITH CAUTION.',
+        button: 'ANALYZE',
         layout: 'left'
     },
     {
-        id: 'aurora',
-        title: 'Aurora<br>Veil',
-        description: 'Ethereal waves of light dance across the cosmos. The aurora pulses with ancient energy from distant stars.',
-        button: 'Absorb Light',
+        id: 'void',
+        title: 'EVENT<br>HORIZON',
+        description: 'SIMULATION BOUNDARY REACHED. DATA BEYOND THIS POINT: NULL.',
+        button: 'CONTINUE',
         layout: 'right'
     },
     {
+        id: 'aurora',
+        title: 'AURORA<br>VEIL',
+        description: 'ELECTROMAGNETIC ANOMALY. ANCIENT STELLAR RADIATION DETECTED.',
+        button: 'ABSORB_LIGHT',
+        layout: 'left'
+    },
+    {
         id: 'solar',
-        title: 'Solar<br>Forge',
-        description: 'The heart of a dying star. Solar flares erupt in magnificent arcs, painting the void with fire.',
-        button: 'Harness Energy',
-        layout: 'center'
+        title: 'SOLAR<br>FORGE',
+        description: 'DYING STAR CORE. SOLAR FLARE ACTIVITY: CRITICAL. ENERGY HARVESTABLE.',
+        button: 'HARVEST',
+        layout: 'right'
     },
     {
         id: 'quantum',
-        title: 'Quantum<br>Realm',
-        description: 'Reality fractures into infinite possibilities. Particles exist in all states simultaneously, defying comprehension.',
-        button: 'Observe State',
+        title: 'QUANTUM<br>REALM',
+        description: 'REALITY FRAGMENTED. PARTICLES IN SUPERPOSITION. OBSERVATION ALTERS STATE.',
+        button: 'OBSERVE',
         layout: 'left'
     },
     {
         id: 'fractal',
-        title: 'Fractal<br>Dimension',
-        description: 'Infinite complexity emerges from simple rules. Each zoom reveals new patterns within patterns.',
-        button: 'Zoom Deeper',
+        title: 'FRACTAL<br>DIMENSION',
+        description: 'INFINITE RECURSION. PATTERNS WITHIN PATTERNS. ZOOM DEPTH: UNLIMITED.',
+        button: 'ZOOM',
         layout: 'right'
     },
     {
         id: 'pulse',
-        title: 'Neural<br>Pulse',
-        description: 'The synaptic network of a cosmic consciousness. Thoughts travel as light between infinite neurons.',
-        button: 'Connect Mind',
-        layout: 'center'
-    },
-    {
-        id: 'mirror',
-        title: 'Mirror<br>Realm',
-        description: 'A dimension where reality reflects upon itself. What is real and what is reflection becomes indistinguishable.',
-        button: 'Step Through',
+        title: 'NEURAL<br>PULSE',
+        description: 'COSMIC CONSCIOUSNESS NETWORK. SYNAPTIC CONNECTIONS: 10^82.',
+        button: 'CONNECT',
         layout: 'left'
     },
     {
-        id: 'storm',
-        title: 'Cosmic<br>Storm',
-        description: 'Electromagnetic chaos tears through the fabric of space. Lightning arcs between worlds.',
-        button: 'Weather Storm',
+        id: 'mirror',
+        title: 'MIRROR<br>REALM',
+        description: 'DIMENSIONAL REFLECTION. REAL/SIMULATED BOUNDARY: INDETERMINATE.',
+        button: 'STEP_THROUGH',
         layout: 'right'
     },
     {
+        id: 'storm',
+        title: 'COSMIC<br>STORM',
+        description: 'ELECTROMAGNETIC CHAOS. INTERDIMENSIONAL LIGHTNING. DANGER: EXTREME.',
+        button: 'WEATHER',
+        layout: 'left'
+    },
+    {
         id: 'spiral',
-        title: 'Golden<br>Spiral',
-        description: 'The mathematical blueprint of existence. Galaxies, shells, and souls all follow this sacred geometry.',
-        button: 'Follow Pattern',
-        layout: 'center'
+        title: 'GOLDEN<br>SPIRAL',
+        description: 'PHI RATIO DETECTED. MATHEMATICAL BLUEPRINT OF EXISTENCE LOCATED.',
+        button: 'FOLLOW',
+        layout: 'right'
     },
     {
         id: 'warp',
-        title: 'Warp<br>Tunnel',
-        description: 'Faster than light, we pierce through dimensions. The universe stretches into infinite streaks.',
-        button: 'Engage Drive',
+        title: 'WARP<br>TUNNEL',
+        description: 'FTL TRANSIT INITIATED. DIMENSIONAL PIERCE IN PROGRESS. HOLD.',
+        button: 'ENGAGE',
         layout: 'left'
     },
     {
         id: 'genesis',
-        title: 'Genesis<br>Core',
-        description: 'The origin point. Where all journeys begin and end. The seed of infinite universes awaits.',
-        button: 'Restart Voyage',
-        layout: 'center'
+        title: 'GENESIS<br>CORE',
+        description: 'ORIGIN. TERMINUS. ALL VOYAGES CONVERGE HERE. RESTART AVAILABLE.',
+        button: 'RESTART',
+        layout: 'right'
     }
 ];
 
 export function createSections() {
     return SCENES.map((scene, index) => `
         <section id="scene-${index + 1}" class="layout-${scene.layout}" data-scene="${scene.id}">
-            <div class="content">
+            <div class="content ${scene.layout === 'right' ? 'right' : ''}">
+                <span class="scene-number">SCENE_${String(index + 1).padStart(2, '0')} // ${scene.id.toUpperCase()}</span>
                 <h1>${scene.title}</h1>
                 <p>${scene.description}</p>
                 <div class="btn" data-action="${scene.id}">${scene.button}</div>
@@ -115,7 +116,7 @@ export function createSections() {
 export function createSceneIndicator() {
     return `
         <div class="scene-indicator">
-            ${SCENES.map((_, i) => `<div class="scene-dot" data-index="${i}"></div>`).join('')}
+            ${SCENES.map((scene, i) => `<div class="scene-dot" data-index="${i}" data-scene="${scene.id.toUpperCase()}"></div>`).join('')}
         </div>
     `;
 }

@@ -1,27 +1,73 @@
-/* ===== NAVIGATION ===== */
-nav {
+/* BRUTALIST NAVIGATION */
+
+.nav {
     position: fixed;
     top: 0;
-    width: 100%;
-    padding: 2rem 4rem;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: var(--space-md) var(--space-lg);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 10;
+    border-bottom: var(--border-thick);
+    background: var(--brutal-black);
     mix-blend-mode: difference;
-    pointer-events: none;
 }
 
-.logo {
-    font-family: var(--font-head);
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    font-size: 1.2rem;
-}
-
-.menu {
-    font-size: 0.8rem;
+.nav-brand {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.5em;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    opacity: 0.7;
+    color: var(--brutal-white);
+    text-decoration: none;
+    position: relative;
+}
+
+.nav-brand::before {
+    content: '>';
+    margin-right: var(--space-sm);
+    color: var(--brutal-accent);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.nav-status {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--brutal-secondary);
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--brutal-secondary);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .nav {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .nav-brand {
+        font-size: 1rem;
+        letter-spacing: 0.3em;
+    }
+
+    .nav-status {
+        display: none;
+    }
 }

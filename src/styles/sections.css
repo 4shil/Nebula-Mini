@@ -1,126 +1,228 @@
-/* ===== SECTIONS ===== */
+/* BRUTALIST SECTIONS */
+
+/* Main content wrapper */
+#app {
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Section - Full viewport */
 section {
-    height: 120vh;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 0 10%;
+    justify-content: flex-start;
+    padding: var(--space-2xl) var(--space-xl);
     position: relative;
-    z-index: 2;
 }
 
+/* Content block - Brutalist card */
 .content {
-    max-width: 500px;
-    pointer-events: none;
+    pointer-events: auto;
+    max-width: 600px;
+    padding: var(--space-lg);
+    background: var(--brutal-black);
+    border: var(--border-thick);
+    position: relative;
     opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .content.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
-h1 {
-    font-family: var(--font-head);
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    mix-blend-mode: exclusion;
-    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* Corner markers - Brutalist detail */
+.content::before,
+.content::after {
+    content: '+';
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    color: var(--brutal-accent);
+    font-weight: 800;
 }
 
-p {
-    font-size: 1rem;
+.content::before {
+    top: -12px;
+    left: -12px;
+}
+
+.content::after {
+    bottom: -12px;
+    right: -12px;
+}
+
+/* Scene number */
+.scene-number {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--brutal-accent);
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+
+/* Titles - Bold and harsh */
+.content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--brutal-white);
+    margin-bottom: var(--space-md);
+}
+
+.content h1 span {
+    display: block;
+    color: var(--brutal-accent);
+}
+
+/* Description */
+.content p {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 2rem;
-    font-weight: 300;
+    color: rgba(245, 245, 245, 0.7);
+    margin-bottom: var(--space-lg);
+    max-width: 45ch;
 }
 
+/* Brutalist button */
 .btn {
     display: inline-block;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 1rem 2.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.25em;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: auto;
+    letter-spacing: 0.1em;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--brutal-white);
+    color: var(--brutal-black);
+    border: none;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
+    text-decoration: none;
     position: relative;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    transition: all 0.1s ease;
 }
 
 .btn:hover {
-    background: rgba(255, 255, 255, 0.95);
-    color: #000;
-    border-color: transparent;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
+    background: var(--brutal-accent);
+    color: var(--brutal-white);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--brutal-white);
 }
 
-.btn:hover::before {
-    left: 100%;
+.btn:active {
+    transform: translate(0, 0);
+    box-shadow: none;
 }
 
-/* ===== SECTION LAYOUTS ===== */
-.layout-left .content {
-    margin-left: 5%;
+.btn::before {
+    content: '[ ';
 }
 
-.layout-right .content {
+.btn::after {
+    content: ' ]';
+}
+
+/* Right-aligned content variant */
+.content.right {
     margin-left: auto;
-    margin-right: 5%;
-    text-align: right;
+    margin-right: var(--space-xl);
 }
 
-.layout-center .content {
-    margin: 0 auto;
-    text-align: center;
-    max-width: 600px;
-}
-
-/* ===== SCENE INDICATORS ===== */
+/* Scene Indicator - Vertical dots */
 .scene-indicator {
     position: fixed;
-    right: 2rem;
+    right: var(--space-lg);
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
+    z-index: 100;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: var(--space-sm);
+    pointer-events: auto;
 }
 
 .scene-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: 2px solid var(--brutal-white);
     cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.scene-dot:hover {
+    border-color: var(--brutal-accent);
 }
 
 .scene-dot.active {
-    background: #fff;
-    transform: scale(1.3);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    background: var(--brutal-accent);
+    border-color: var(--brutal-accent);
+}
+
+.scene-dot::after {
+    content: attr(data-scene);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--brutal-white);
+}
+
+.scene-dot:hover::after {
+    opacity: 1;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    section {
+        padding: var(--space-xl) var(--space-md);
+        padding-top: 100px;
+        align-items: flex-start;
+    }
+
+    .content {
+        max-width: 100%;
+        padding: var(--space-md);
+    }
+
+    .content h1 {
+        font-size: 2rem;
+    }
+
+    .content.right {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .scene-indicator {
+        right: var(--space-sm);
+    }
+
+    .scene-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .scene-dot::after {
+        display: none;
+    }
 }

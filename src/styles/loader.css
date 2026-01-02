@@ -1,57 +1,73 @@
-/* ===== LOADER ===== */
+/* BRUTALIST LOADER */
+
 .loader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #000 100%);
-    z-index: 100;
+    inset: 0;
+    z-index: 9999;
+    background: var(--brutal-black);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 2rem;
-    transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.loader span {
-    font-family: var(--font-head);
-    color: #fff;
-    letter-spacing: 0.3em;
-    font-size: 0.9rem;
-    animation: pulse 1.5s ease-in-out infinite;
-}
-
-.loader::before {
-    content: '';
-    width: 60px;
-    height: 60px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-top-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        opacity: 0.4;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    justify-content: center;
+    transition: opacity 0.3s ease;
 }
 
 .loader.hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+/* Terminal-style loader */
+.loader-text {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--brutal-white);
+    margin-bottom: var(--space-lg);
+}
+
+.loader-text::before {
+    content: '> ';
+    color: var(--brutal-accent);
+}
+
+/* Loading bar */
+.loader-bar {
+    width: 200px;
+    height: 4px;
+    background: rgba(245, 245, 245, 0.1);
+    border: 1px solid var(--brutal-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30%;
+    background: var(--brutal-accent);
+    animation: load 1.5s ease-in-out infinite;
+}
+
+@keyframes load {
+    0% {
+        left: -30%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* Status messages */
+.loader-status {
+    margin-top: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--brutal-secondary);
+    letter-spacing: 0.1em;
 }

@@ -1,57 +1,160 @@
-/* ===== CSS VARIABLES ===== */
+/* BRUTALIST DESIGN SYSTEM */
+/* Raw. Bold. Unapologetic. */
+
 :root {
-    --bg: #050505;
-    --text: #e0e0e0;
-    --font-head: 'Cinzel', serif;
-    --font-body: 'Space Grotesk', sans-serif;
-    
-    /* Scene Colors */
-    --nebula: #00ffff;
-    --crystal: #ff00aa;
-    --grid: #00ff00;
-    --void: #ffffff;
-    --aurora: #7b2ff7;
-    --solar: #ff6b00;
-    --quantum: #00ffd5;
-    --fractal: #ff1493;
-    --pulse: #39ff14;
-    --mirror: #c0c0c0;
-    --storm: #4169e1;
-    --spiral: #ffd700;
-    --warp: #ff4500;
-    --genesis: #9400d3;
+    /* Core Brutalist Palette */
+    --brutal-black: #0a0a0a;
+    --brutal-white: #f5f5f5;
+    --brutal-accent: #ff3c00;
+    /* Harsh orange-red */
+    --brutal-secondary: #00ff88;
+    /* Electric green */
+    --brutal-warning: #ffff00;
+    /* Pure yellow */
+
+    /* Typography */
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+
+    /* Spacing - 8px grid */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 32px;
+    --space-xl: 64px;
+    --space-2xl: 128px;
+
+    /* Borders */
+    --border-thin: 1px solid var(--brutal-white);
+    --border-thick: 3px solid var(--brutal-white);
+    --border-accent: 3px solid var(--brutal-accent);
+
+    /* Scene accent colors - more muted/industrial */
+    --scene-1: #ff3c00;
+    --scene-2: #00ff88;
+    --scene-3: #0088ff;
+    --scene-4: #ff00ff;
+    --scene-5: #00ffff;
+    --scene-6: #ffff00;
+    --scene-7: #8800ff;
+    --scene-8: #ff0088;
+    --scene-9: #88ff00;
+    --scene-10: #0044ff;
+    --scene-11: #ff4400;
+    --scene-12: #ffcc00;
+    --scene-13: #00ffcc;
+    --scene-14: #ffffff;
 }
 
-/* ===== RESET ===== */
-* {
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@400;700&display=swap');
+
+/* Reset - Brutal */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+    font-size: 16px;
+    scroll-behavior: auto;
+    /* Lenis handles smooth scroll */
+    background: var(--brutal-black);
 }
 
 body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: var(--font-body);
+    background: var(--brutal-black);
+    color: var(--brutal-white);
+    font-family: var(--font-mono);
+    line-height: 1.5;
     overflow-x: hidden;
-    scrollbar-width: none;
+    cursor: crosshair;
+    -webkit-font-smoothing: antialiased;
 }
 
-body::-webkit-scrollbar {
-    display: none;
-}
-
-/* ===== CANVAS ===== */
+/* Canvas - Fixed fullscreen */
 #webgl {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
-    outline: none;
+    z-index: 0;
+}
+
+/* Selection */
+::selection {
+    background: var(--brutal-accent);
+    color: var(--brutal-black);
+}
+
+/* Scrollbar - Brutalist */
+::-webkit-scrollbar {
+    width: 12px;
+    background: var(--brutal-black);
+}
+
+::-webkit-scrollbar-track {
+    background: var(--brutal-black);
+    border-left: var(--border-thin);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--brutal-white);
+    border: 2px solid var(--brutal-black);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--brutal-accent);
+}
+
+/* Utility Classes */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+/* Glitch text effect */
+@keyframes glitch {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(2px, -2px);
+    }
+
+    60% {
+        transform: translate(-1px, -1px);
+    }
+
+    80% {
+        transform: translate(1px, 1px);
+    }
+}
+
+.glitch {
+    animation: glitch 0.3s ease-in-out infinite;
+}
+
+/* Noise overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
 }
