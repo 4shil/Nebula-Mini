@@ -27,42 +27,53 @@ export function createScrollAnimations(camera, sceneGroups, lenis) {
         lenis.on('scroll', ScrollTrigger.update);
     }
 
-    // All scenes stay visible at scale 1,1,1 - no hiding
-    // Camera moves through them smoothly
-
     const totalScenes = sceneGroups.length;
 
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: 'body',
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1.2, // Smooth scrub
-            snap: {
-                snapTo: 1 / (totalScenes - 1),
-                duration: { min: 0.3, max: 0.6 },
-                delay: 0.1,
-                ease: "power2.inOut"
-            }
-        }
+    // STRICT ONE-SCENE-AT-A-TIME: Hide all scenes except first
+    sceneGroups.forEach((group, i) => {
+        group.visible = (i === 0);
     });
 
-    // Build Timeline - Camera movement only (no scale animations)
-    for (let i = 0; i < totalScenes - 1; i++) {
-        const progress = i / (totalScenes - 1);
-        const nextProgress = (i + 1) / (totalScenes - 1);
-        const duration = nextProgress - progress;
+    // Track current scene for visibility toggling
+    let currentSceneIndex = 0;
 
-        // Smooth camera movement to next scene
-        tl.to(camera.position, {
-            z: SCENE_POSITIONS[i + 1] + 10,
-            duration: duration,
-            ease: 'power1.inOut' // Gentle ease for smooth feel
-        }, progress);
+    // Create ScrollTrigger for each scene to toggle visibility
+    const sections = document.querySelectorAll('section');
+
+    sections.forEach((section, i) => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: 'top center',
+            end: 'bottom center',
+            onEnter: () => switchScene(i),
+            onEnterBack: () => switchScene(i)
+        });
+    });
+
+    function switchScene(newIndex) {
+        if (newIndex === currentSceneIndex) return;
+
+        // Hide current scene
+        if (sceneGroups[currentSceneIndex]) {
+            sceneGroups[currentSceneIndex].visible = false;
+        }
+
+        // Show new scene
+        if (sceneGroups[newIndex]) {
+            sceneGroups[newIndex].visible = true;
+        }
+
+        // Move camera to new scene position
+        gsap.to(camera.position, {
+            z: SCENE_POSITIONS[newIndex] + 10,
+            duration: 0.8,
+            ease: 'power2.inOut'
+        });
+
+        currentSceneIndex = newIndex;
     }
 
     // Content visibility animations
-    const sections = document.querySelectorAll('section');
     sections.forEach((section, i) => {
         const content = section.querySelector('.content');
 
